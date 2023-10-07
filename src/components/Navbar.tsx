@@ -12,11 +12,20 @@ import {
   MenuItem,
   MenuList,
   useBreakpointValue,
+  useEffect,
+  useState
 } from "@chakra-ui/react";
 import { FaBook, FaDiscord, FaGithub, FaTwitter } from "react-icons/fa";
 import logo from "../assets/icon.png";
 
 export default function NavBar() {
+  const [stars, setStars] = useState(0);
+
+  useEffect(() => {
+    fetch('https://api.github.com/repos/sweepai/sweep')
+      .then(response => response.json())
+      .then(data => setStars(data.stargazers_count));
+  }, []);
 
   const listDisplay = useBreakpointValue({ base: "none", lg: "flex" });
   const menuDisplay = useBreakpointValue({ base: "flex", lg: "none" });
@@ -53,6 +62,9 @@ export default function NavBar() {
     },
   ];
 
+  <Box bg="bg-surface" p={4}>
+    GitHub Stars: {stars}
+  </Box>
   return (
     <Box as="nav" bg="bg-surface" boxShadow="sm" width="full" p={4}>
       <HStack spacing="10" justify="space-between">
