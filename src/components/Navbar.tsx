@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { FaBook, FaDiscord, FaGithub, FaTwitter } from "react-icons/fa";
 import logo from "../assets/icon.png";
+import GithubBanner from './GithubBanner';
 
 export default function NavBar() {
 
@@ -55,6 +56,7 @@ export default function NavBar() {
 
   return (
     <Box as="nav" bg="bg-surface" boxShadow="sm" width="full" p={4}>
+      <GithubBanner />
       <HStack spacing="10" justify="space-between">
         <Flex justify="space-between" flex="1">
           <HStack>
